@@ -2,6 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using patterns.creational.factory_method;
 using patterns.creational.prototype;
 using patterns.creational.singleton;
+using patterns.creational.builder;
 
 namespace IntegrationTests
 {
@@ -59,6 +60,24 @@ namespace IntegrationTests
             Assert.IsNotInstanceOfType(cloned, typeof(Circle));
             Assert.IsInstanceOfType(cloned, typeof(Rectangle));
             Assert.AreNotSame(cloned, rect);
+
+        }
+
+        [TestMethod]
+        public void builderTest()
+        {
+            Bartender bartender = new Bartender();
+            IBuilder builder = new GreenTeaBuilder();
+            Drink tea = bartender.Prepare(builder);
+
+            Assert.AreEqual(tea.TeaLeaves, TeaLeaves.Green);
+
+            builder = new BlackTeaBuilder();
+            Drink blackTea = bartender.Prepare(builder);
+
+            Assert.AreEqual(blackTea.TeaLeaves, TeaLeaves.Black);
+
+
 
         }
     }
