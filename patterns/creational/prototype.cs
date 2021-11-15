@@ -9,6 +9,7 @@ namespace patterns.creational
         public interface IFigure
         {
             IFigure Clone();
+            string GetData();
 
         }
 
@@ -28,6 +29,11 @@ namespace patterns.creational
             {
                 return new Rectangle(Width, Height);
             }
+
+            public string GetData()
+            {
+                return $"Rectange: {Width}, {Height}";
+            }
         }
 
         public class Circle : IFigure
@@ -39,6 +45,11 @@ namespace patterns.creational
             public IFigure Clone()
             {
                 return new Circle(Width);
+            }
+
+            public string GetData()
+            {
+                return $"Circle: {Width}";
             }
         }
 

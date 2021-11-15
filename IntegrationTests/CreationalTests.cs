@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using patterns.creational.factory_method;
+using patterns.creational.prototype;
 using patterns.creational.singleton;
 
 namespace IntegrationTests
@@ -40,6 +41,24 @@ namespace IntegrationTests
             Assert.IsInstanceOfType(server, typeof(Singleton));
 
 
+
+        }
+
+        [TestMethod]
+        public void prototypeTest()
+        {
+            var circle = new Circle(25);
+            var cloned = circle.Clone();
+
+            Assert.IsNotNull(cloned);
+            Assert.AreNotSame(cloned, circle);
+
+            var rect = new Rectangle(24, 12);
+            cloned = rect.Clone();
+
+            Assert.IsNotInstanceOfType(cloned, typeof(Circle));
+            Assert.IsInstanceOfType(cloned, typeof(Rectangle));
+            Assert.AreNotSame(cloned, rect);
 
         }
     }
